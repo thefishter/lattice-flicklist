@@ -1,0 +1,31 @@
+{
+  "name": "fish-lattice-interview",
+  "version": "1.0.0",
+  "description": "React/Node.js web app to search the Movie DB API",
+  "main": "app.js",
+  "scripts": {
+    "app": "npm run install-all && npm run start-all",
+    "install-all": "npm install & npm install --prefix client",
+    "start-all": "npm start & npm start --prefix client",
+    "start": "nodemon --exec babel-node app.js"
+  },
+  "author": "Fish",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "nodemon": "^1.19.1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  }
+}
