@@ -30,9 +30,8 @@ class MoviePreview extends Component {
 
 	render() {
 		const { id, title, poster_path } = this.props.movie
-		const previewWidth = `${process.env.REACT_APP_POSTER_THUMB_SIZE}px`
-
-		console.log(previewWidth)
+		const previewWidth = 185
+		// `${process.env.REACT_APP_POSTER_THUMB_SIZE}px`
 
 		const imgSrc = poster_path && this.state.imgBuffer
 			? this.state.imgBuffer

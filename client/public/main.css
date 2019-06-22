@@ -23,7 +23,7 @@ a {
     opacity: 0.8;
   }
 
-#movie-search  {
+#movie-search {
   background: #1e5799;
   background: -moz-linear-gradient(left, #00171F 0%, #002a39 100%);
   background: -webkit-linear-gradient(left, #00171F 0%, #002a39 100%);
@@ -60,3 +60,17 @@ a {
   .Pagination button:disabled {
     opacity: 0.4;
   }
+
+.Loading {
+  animation: Loading-spin infinite 20s linear;
+  pointer-events: none;
+}
+
+@keyframes Loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

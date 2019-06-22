@@ -6,6 +6,7 @@ import { getMovieList } from './utils'
 import Header from './Header'
 import MoviesList from './MoviesList'
 import MovieDetail from './MovieDetail'
+import Loading from './Loading'
 
 class App extends Component {
   constructor(props) {
@@ -49,20 +50,24 @@ class App extends Component {
   }
 
   render() {
-    const { searchResults, pagination } = this.state
+    const { searchQuery, searchResults, pagination } = this.state
     return (
       <Router>
         <Header handleChange={this.searchMovies} />
-        <Switch>
-          <Route path='/movie/:movieId' component={MovieDetail} />
-          <Route path='/' render={() =>
-            <MoviesList
-              movies={searchResults}
-              handleChange={this.handlePaginationChange}
-              pagination={pagination}
-            /> }
-          />
-        </Switch>
+        {
+          !searchQuery && !searchResults.length
+            ? <Loading />
+            : <Switch>
+                <Route path='/movie/:movieId' component={MovieDetail} />
+                <Route path='/' render={() =>
+                  <MoviesList
+                    movies={searchResults}
+                    handleChange={this.handlePaginationChange}
+                    pagination={pagination}
+                  /> }
+                />
+              </Switch>
+        }
       </Router>
     )
   }
