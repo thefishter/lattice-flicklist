@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-
+/* Search movies given query, or fetch most popular movies if query is empty. */
 export const getMovieList = (query, page) =>
 	query
 		? axios.post(`/api/search`, { query, page })

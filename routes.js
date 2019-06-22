@@ -5,6 +5,7 @@ const router = express.Router()
 
 const AUTH_QUERY = `?api_key=${process.env.REACT_APP_MDB_API_KEY}`
 
+/* Retrieves most popular movies. Pagination enabled. */
 router.get('/api', (req, res, next) => {
 	const paginationQuery = req.query.page
 		? `&page=${req.query.page}`
@@ -20,6 +21,7 @@ router.get('/api', (req, res, next) => {
 		})
 })
 
+/* Retrieves poster image for given movie based on its poster path/URL, found on the movie object. Can specify whether to retrieve the full version or the thumbnail version. */
 router.get('/api/images/poster/:posterPath/:size', (req, res, next) => {
 	let { size, posterPath } = req.params
 	const width = size === 'full'
@@ -41,6 +43,7 @@ router.get('/api/images/poster/:posterPath/:size', (req, res, next) => {
 	})
 })
 
+/* Retrieves a given movie based on its ID. */
 router.get('/api/movie/:id', (req, res, next) => {
 	const movieId = req.params.id
 	return axios.get(`https://api.themoviedb.org/3/movie/${movieId}${AUTH_QUERY}`)
@@ -53,6 +56,7 @@ router.get('/api/movie/:id', (req, res, next) => {
 		})
 })
 
+/* Retrieves the cast for a given movie. */
 router.get('/api/movie/:id/cast', (req, res, next) => {
 	const movieId = req.params.id
 	return axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits${AUTH_QUERY}`)
@@ -66,6 +70,7 @@ router.get('/api/movie/:id/cast', (req, res, next) => {
 		})
 })
 
+/* Searches movies. Pagination enabled. */
 router.post('/api/search', (req, res, next) => {
 	const { page, query } = req.body
 	const paginationQuery = page ? `&page=${page}` : ''

@@ -13,6 +13,7 @@ class MoviePreview extends Component {
 
 	componentDidMount() {
 		const { poster_path } = this.props.movie
+		// Fetch movie thumbnail. Must be passed in a string buffer from backend to prevent client from needing to know the API key environment variable.
 		if (poster_path) {
 			getMoviePoster(poster_path, 'thumb')
 				.then(res => this.setState({
@@ -30,9 +31,10 @@ class MoviePreview extends Component {
 
 	render() {
 		const { id, title, poster_path } = this.props.movie
-		const previewWidth = 185
+		const previewWidth = `185px`
 		// `${process.env.REACT_APP_POSTER_THUMB_SIZE}px`
 
+		// Use placeholder image if no poster exists in TMDB
 		const imgSrc = poster_path && this.state.imgBuffer
 			? this.state.imgBuffer
 			: 'https://via.placeholder.com/185x278?text=No+poster+preview'

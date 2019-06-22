@@ -17,8 +17,8 @@ class MovieDetail extends Component {
 	componentDidMount() {
 		const { location } = this.props
 
-		/* if this page was reached via a movie preview within the movie list,
-			 details will be within state on the location object */
+		/* If this page was reached via a movie preview within the movie list,
+			 movie details will already be within state on the location object. */
 		this.getPosterAndCast(location.state && location.state.movie)
 			.then(([ movie, castRes, posterRes ]) => {
 				this.setState({
@@ -32,10 +32,12 @@ class MovieDetail extends Component {
 
 	getPosterAndCast = async (movie, poster_path) => {
 		if (!movie)
+			// If we don't already have movie details, fetch the movie info
 			movie = await getMovieInfo(this.props.match.params.movieId)
 				.then(res => new Promise(resolve => resolve(res.data) ))
 				.catch(console.error)
 
+		// Then fetch the movie's cast and full poster image
 		return Promise.all([
 			movie,
 			getMovieCast(movie.id),

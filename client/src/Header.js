@@ -6,6 +6,7 @@ import debounce from 'lodash.debounce'
 class Header extends Component {
 	constructor(props) {
 		super(props)
+		// Wait for user to stop typing before firing search
 		this.debouncedSearch = debounce(this.props.handleChange, 400)
 	}
 

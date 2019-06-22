@@ -2,6 +2,7 @@ import React from 'react'
 
 const Pagination = props => {
 	const { page, totalPages, handleChange } = props
+
 	let verticalMargin = ''
 	if (props.topOfPage) verticalMargin = 'mt-5'
 	else if (props.bottomOfPage) verticalMargin = 'mb-5'
